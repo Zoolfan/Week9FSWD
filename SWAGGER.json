@@ -1,0 +1,103 @@
+{
+  "openapi": "3.0.3",
+  "options":{
+    "info": {
+      "title": "Swagger Week9- OpenAPI 3.0",
+      "version": "1.0.11",
+      "description": "Week 9 Swagger"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/{table_name}": {
+      "get": {
+        "summary": "show all column from a table",
+        "tags": [
+          "table"
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully show all data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Movies"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{table_name}/{id}": {
+      "get": {
+        "summary": "show specific data by id from table",
+        "tags": [
+          "table"
+        ],
+        "parameters": [
+          {
+            "name": "table_name",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully show data by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Movies"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Movies": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "judul film"
+          },
+          "genres": {
+            "type": "string",
+            "example": "horror"
+          },
+          "year": {
+            "type": "integer",
+            "example": 2023
+          }
+        }
+      }
+    }
+  }
+}
